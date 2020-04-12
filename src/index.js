@@ -1,12 +1,35 @@
-import React from 'react';
+import React, { Component, Fragment } from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import Record from './Record';
+import Search from './component/Search';
+import PicShow from './component/PicShow';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+class All extends Component {
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+  constructor(props) {
+    super(props);
+    this.setQueryKey = this.setQueryKey.bind(this);
+    this.state = {
+      queryKey: ''
+    }
+  }
+
+  setQueryKey = (queryKey) => {
+    this.setState((prevState) => {
+      return {
+        queryKey
+      }
+    })
+  }
+
+  render() {
+    return <Fragment>
+        <Search setQueryKey={this.setQueryKey} />
+        <PicShow queryKey={this.state.queryKey} />
+        <Record />
+      </Fragment>
+  }
+}
+
+ReactDOM.render(<All />, document.getElementById('root'));
+
