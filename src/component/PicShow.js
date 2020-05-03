@@ -35,18 +35,24 @@ class PicShow extends Component {
       if(null == idata){
         return (<Fragment></Fragment>);
       }
+
+      if(undefined == idata.fileId){
+        return (<p>{idata.textInfo}</p>);
+      }
+
+      const fileUrl = '/images/' + idata.fileVO.fileName;
       return (
         <div className='pic-div'>
-          <img alt={idata.fileName} key={idata.fileId} src={idata.fileUrl}/>
-          <p>{idata.remark}</p>
+          <img alt={idata.fileVO.fileName} key={idata.fileVO.fileId} src={fileUrl}/>
+          <p>{idata.textInfo}</p>
         </div>
       );
     }
 
     handleSearch(queryKey) {
       this.setState({imgList: [], info: null});
-      // const url = `/violet/search?key=${queryKey}`;
-      const url = 'http://192.168.0.99:18084/violet/search/one?key=' + this.state.queryKey;
+      const url = `/violet/search/one?key=${queryKey}`;
+      //const url = 'http://192.168.0.99:18084/violet/search/one?key=' + this.state.queryKey;
       axios.get(url)
             .then(res => {
               const result = res.data;

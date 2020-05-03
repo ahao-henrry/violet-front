@@ -1,10 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import Record from './Record';
 import Search from './component/Search';
 import PicShow from './component/PicShow';
-import Upload from './Upload'
 
 class All extends Component {
 
