@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 
@@ -9,7 +9,8 @@ class PicShow extends Component {
       super(props);
       this.state = {
         pageState: 'init',
-        imgList: []
+        imgList: [],
+        info: null
       };
     }
 
@@ -20,7 +21,7 @@ class PicShow extends Component {
 
     render() {
       
-      return (
+      /*return (
         <div className='pic-div'>
           {
               this.state.imgList.map((imgInfo) => {
@@ -29,18 +30,29 @@ class PicShow extends Component {
               })
           }
         </div>
+      );*/
+      const idata = this.state.info;
+      if(null == idata){
+        return (<Fragment></Fragment>);
+      }
+      return (
+        <div className='pic-div'>
+          <img alt={idata.fileName} key={idata.fileId} src={idata.fileUrl}/>
+          <p>{idata.remark}</p>
+        </div>
       );
     }
 
     handleSearch(queryKey) {
-      this.setState({imgList: []});
-      const url = `/violet/search?key=${queryKey}`;
+      this.setState({imgList: [], info: null});
+      // const url = `/violet/search?key=${queryKey}`;
+      const url = 'http://192.168.0.99:18084/violet/search/one?key=' + this.state.queryKey;
       axios.get(url)
             .then(res => {
               const result = res.data;
               this.setState((prevState) => {
                 return {
-                  imgList: result,
+                  info: result
                 }
               });
             })
