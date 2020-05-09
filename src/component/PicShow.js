@@ -41,6 +41,7 @@ class PicShow extends Component {
       }
 
       const fileUrl = '/images/' + idata.fileVO.fileName;
+      // const fileUrl = 'http://www.ahaohenry.com/images/' + idata.fileVO.fileName;
       return (
         <div className='pic-div'>
           <img alt={idata.fileVO.fileName} key={idata.fileVO.fileId} src={fileUrl}/>
@@ -52,7 +53,7 @@ class PicShow extends Component {
     handleSearch(queryKey) {
       this.setState({imgList: [], info: null});
       const url = `/violet/search/one?key=${queryKey}`;
-      //const url = 'http://192.168.0.99:18084/violet/search/one?key=' + this.state.queryKey;
+      // const url = 'http://192.168.0.99:18084/violet/search/one?key=' + this.state.queryKey;
       axios.get(url)
             .then(res => {
               const result = res.data;

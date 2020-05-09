@@ -1,23 +1,22 @@
 .search-div {
-    border: 1px solid skyblue;
-    width: fit-content;
     padding: 5px;
-    border-radius: 15px;
+    font-size: 25px;
 }
 
 .search-input {
     border: none;
     margin-left: 5px;
     margin-right: 5px;
-    height: 24px;
+    font-size: 50px;
 }
 
 .search-btn {
     position: fixed;
     margin-left: 10px;
-    width: 24px;
-    height: 24px;
-    background-image: url(../media/search.png);
+    width: 80px;
+    height: 80px;
+    background-image: url(../media/search1.png);
+    background-size: 80px 80px;
     background-repeat: no-repeat;
 }
 .search-btn:hover {
